@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+@keyframes expand {
+  from {
+    width: 1;
+  }
+  to {
+    width: 98%;
+  }
+}
+
+.animate-expand {
+  animation: expand 1s ease-out forwards;
+}
+.line-animation {
+  animation: expand 1s ease-out forwards;
+  width: 0; /* Ensure it starts from zero */
+}
+
