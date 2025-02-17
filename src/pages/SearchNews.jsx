@@ -55,10 +55,9 @@ const SearchNews = ({ newsData }) => {
   }, [filteredNews]);
 
   return (
-    <div className="">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-7">
       {filteredNews.length > 0 ? (
         filteredNews.map((news, index) => (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-7">
 
           <div
             key={index}
@@ -78,7 +77,7 @@ const SearchNews = ({ newsData }) => {
               </span>
             </div>
           </div>
-              </div>
+      
         ))
       ) : (
         <div className=" flex flex-col justify-start items-center">

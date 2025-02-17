@@ -116,7 +116,8 @@ const Home = () => {
           >
             <ArrowUp className="w-6 h-6" />
           </button>
-        </div>}
+        </div>
+        }
       <ToastContainer />
 
     </div>
