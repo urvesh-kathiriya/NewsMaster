@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
@@ -7,6 +7,7 @@ import { HashLoader } from "react-spinners";
 import { ArrowUp } from "lucide-react";
 import { getMentioningApple, getTechCrunch, getTesla, getTopHeadline, getWallStreet } from "../services/GetService";
 import logo from "../assets/logo.png";
+import { UserContext } from "../creactContext/UserInfoContext";
 
 
 const Categories = () => {
@@ -22,7 +23,8 @@ const Categories = () => {
   const [index, setIndex] = useState(0);
   const typingSpeed = 125; 
   const pauseTime = 1500; 
-
+  const { userName, password } = useContext(UserContext);
+  
 
   const styles = {
     fontSize: "16px",
@@ -115,6 +117,9 @@ const Categories = () => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
+  const handleDtetail = (index,news) => {
+    return userName && password ?navigate(`/Detail/${index}`, { state: { news } }):navigate("/login")
+  };
 
   if (loading) return <div className="flex justify-center items-center h-screen"><HashLoader color="#1fcb7c" size={75} /></div>;
   if (error) return <p className="text-center text-red-500">{error}</p>;
@@ -149,7 +154,7 @@ const Categories = () => {
               <div
                 key={index}
                 className="flex flex-col items-center text-black bg-white border shadow-lg drop-shadow-2xl rounded-2xl p-5"
-                onClick={() => { navigate(`/Detail/${index}`, { state: { news } }) }}
+                onClick={()=>{handleDtetail(index,news)}}
               >
 
                 <img

@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
+import logo from "../assets/logo.png";
+import moment from "moment";
 import { ToastContainer, toast } from 'react-toastify';
 import { useLocation, useNavigate } from "react-router-dom";
-import moment from "moment";
-import logo from "../assets/logo.png";
 import { AiOutlineHome } from "react-icons/ai";
 
 const Detail = () => {

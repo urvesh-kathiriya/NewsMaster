@@ -1,12 +1,13 @@
+import "../App.css";
+import logo from "../assets/logo.png";
 import { useState, useEffect, useContext } from "react";
 import { useNavigate, useLocation, redirect } from "react-router-dom";
-import { Menu, X } from "lucide-react";
-import logo from "../assets/logo.png";
-import "../App.css";
+import { LogIn, LogOut, Menu, X } from "lucide-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 import { SearchContext } from "../creactContext/SearchContext";
 import { ThemeContext } from "../creactContext/DarkLightContext";
+import { UserContext } from "../creactContext/UserInfoContext";
 
 
 const Navbar = () => {
@@ -14,19 +15,31 @@ const Navbar = () => {
     const location = useLocation();
     const [menuOpen, setMenuOpen] = useState(false);
     const { search, setSearch } = useContext(SearchContext);
-    const { darkMode, setDarkMode } = useContext(ThemeContext)
+    const { userName, setUsername, password, setPassword } = useContext(UserContext);
+    const { darkMode, setDarkMode } = useContext(ThemeContext);
 
     const handlesearch = (e) => {
-        setSearch(e.target.value)
+        setSearch(e.target.value);
     };
 
     const toggleTheme = () => {
         setDarkMode((prevMode) => !prevMode);
-      };
-
-    const reDirect=(path)=>{
-        navigate(path)
-        setSearch("");
+    };
+    const userAvtar = (name) => (name ? name.charAt(0).toUpperCase() : "?");
+   
+    const reDirect = (path) => {
+        return userName && password && path==="login" ?
+            (
+                navigate(path),
+                setSearch(""),
+                setUsername(""),
+                setPassword("")
+            )
+            :
+            (
+                navigate(path),
+                setSearch("")
+            )
     }
 
 
@@ -38,11 +51,18 @@ const Navbar = () => {
 
     return (
         <nav className="mt-2 bg-white p-3 dark:text-white dark:bg-gray-900">
+
             <div className="container mx-auto flex justify-between items-center px-4">
                 <button onClick={() => navigate("/")} style={{ cursor: "pointer" }}>
                     <img src={logo} alt="Logo" className="h-12 w-auto" />
                 </button>
 
+                {userName && password && 
+                <div className="w-10 h-10 flex items-center justify-center rounded-full bg-blue-500 text-white font-bold text-lg" onClick={()=>{reDirect("/userDetail")}}>
+                    {userAvtar(userName)}
+                </div>
+
+                }
 
                 <button className="md:hidden" onClick={() => setMenuOpen(!menuOpen)}>
                     {menuOpen ? <X size={28} /> : <Menu size={28} />}
@@ -68,13 +88,26 @@ const Navbar = () => {
                             placeholder="Search..."
                             className="px-4 py-1  rounded-lg border border-gray-300 text-black focus:outline-none focus:ring focus:ring-blue-200"
                             onChange={handlesearch}
-                            
+
                         />
 
                     </div>
                     <button onClick={toggleTheme} className="ml-4 text-xl text-gray-900 dark:text-gray-200">
                         <FontAwesomeIcon icon={darkMode ? faSun : faMoon} className={darkMode ? "text-yellow-500" : "text-gray-500"} />
                     </button>
+                    {!userName && !password &&
+                        <button onClick={() => reDirect("/login")} className="flex items-center gap-2 px-4 py-2 rounded-lg  transition">
+                            <LogIn size={20} />
+
+                        </button>
+                    }
+                    {userName && password &&
+                        <button onClick={() => reDirect("/login")} className="flex items-center gap-2 px-4 py-2 rounded-lg  transition">
+                            <LogOut size={20} />
+
+                        </button>
+                    }
+
                 </div>
 
             </div>

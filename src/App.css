@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+
+
 @keyframes expand {
   from {
     width: 1;
@@ -14,6 +16,6 @@
 }
 .line-animation {
   animation: expand 1s ease-out forwards;
-  width: 0; /* Ensure it starts from zero */
+  width: 0; 
 }
 

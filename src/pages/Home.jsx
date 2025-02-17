@@ -9,6 +9,7 @@ import { ArrowUp, Search } from "lucide-react";
 import { getTopHeadline } from "../services/GetService";
 import { SearchContext } from "../creactContext/SearchContext";
 import SearchNews from "./SearchNews";
+import { UserContext } from "../creactContext/UserInfoContext";
 
 
 
@@ -22,7 +23,8 @@ const Home = () => {
   const { search } = useContext(SearchContext);
   const [isVisible, setIsVisible] = useState(false);
   const navigate = useNavigate();
-  
+  const { userName, password } = useContext(UserContext);
+
   const styles = {
     fontSize: "16px",
     fontWeight: "bold",
@@ -66,22 +68,26 @@ const Home = () => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
+  const handleDtetail = (index,news) => {
+    return userName && password ?navigate(`/Detail/${index}`, { state: { news } }):navigate("/login")
+  };
+
 
   if (loading) return <div className="flex justify-center items-center h-screen"><HashLoader color="#1fcb7c" size={75} /></div>;
   if (error) return <p className="text-center text-red-500">{error}</p>;
 
   return (
     <div>
-      {search  ? <div>
-        <SearchNews newsData={newsData}/>
-        </div>
+      {search ? <div>
+        <SearchNews newsData={newsData} />
+      </div>
         :
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-7" >
           {newsData.map((news, index) => (
             <div
               key={index}
               className="flex flex-col items-center text-black bg-white border shadow-lg drop-shadow-2xl rounded-2xl p-5"
-              onClick={() => { navigate(`/Detail/${index}`, { state: { news } }) }}
+              onClick={()=>{handleDtetail(index,news)}}
             >
 
               <img
@@ -111,10 +117,10 @@ const Home = () => {
             <ArrowUp className="w-6 h-6" />
           </button>
         </div>}
-        <ToastContainer />
+      <ToastContainer />
 
-      </div>
+    </div>
   );
 };
 
-      export default Home;
+export default Home;
