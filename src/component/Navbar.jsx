@@ -8,6 +8,8 @@ import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 import { SearchContext } from "../creactContext/SearchContext";
 import { ThemeContext } from "../creactContext/DarkLightContext";
 import { UserContext } from "../creactContext/UserInfoContext";
+import { ToastContainer, toast } from 'react-toastify';
+
 
 
 const Navbar = () => {
@@ -17,7 +19,14 @@ const Navbar = () => {
     const { search, setSearch } = useContext(SearchContext);
     const { userName, setUsername, password, setPassword } = useContext(UserContext);
     const { darkMode, setDarkMode } = useContext(ThemeContext);
-
+    const styles = {
+        fontSize: "16px",
+        fontWeight: "bold",
+        padding: "12px 20px",
+        borderRadius: "8px",
+        width: "300px",
+        boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
+      }
     const handlesearch = (e) => {
         setSearch(e.target.value);
     };
@@ -28,12 +37,13 @@ const Navbar = () => {
     const userAvtar = (name) => (name ? name.charAt(0).toUpperCase() : "?");
    
     const reDirect = (path) => {
-        return userName && password && path==="login" ?
+        return userName && password && path ==="/login" ?
             (
-                navigate(path),
                 setSearch(""),
                 setUsername(""),
-                setPassword("")
+                setPassword(""),
+                toast(`${userName} LogOut SucessFully`, { type: "info", position: "bottom-right", autoClose: 3000, style: styles })
+                
             )
             :
             (
@@ -126,6 +136,7 @@ const Navbar = () => {
                 </div>
             )}
             <div className="absolute left-3 w-0 h-[2px] bg-gray-500 animate-expand mt-3"></div>
+            <ToastContainer />
         </nav>
     );
 };
