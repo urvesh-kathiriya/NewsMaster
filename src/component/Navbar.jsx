@@ -54,7 +54,8 @@ const Navbar = () => {
 
             <div className="container mx-auto flex justify-between items-center px-4">
                 <button onClick={() => navigate("/")} style={{ cursor: "pointer" }}>
-                    <img src={logo} alt="Logo" className="h-12 w-auto" />
+                    <img src={logo} alt="Logo" className="h-12 w-auto" loading="lazy"
+ />
                 </button>
 
                 {userName && password && 

@@ -42,6 +42,7 @@ const Footer = () => {
                 className="h-20"
                 src={logo}
                 alt="Company name"
+                loading="lazy"
               />
             </button>
             <p className="text-sm leading-6 text-gray-400">

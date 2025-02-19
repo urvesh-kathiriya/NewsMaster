@@ -51,6 +51,7 @@ const Detail = () => {
                         className="w-full h-full object-cover rounded-lg drop-shadow-2xl"
                         alt="News"
                         src={news.urlToImage || logo}
+                        loading="lazy"
                     />
                 </div>
 

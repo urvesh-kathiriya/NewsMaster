@@ -94,6 +94,7 @@ const Home = () => {
                 className="size-72 object-cover rounded-md drop-shadow-xl"
                 alt="News"
                 src={news.urlToImage || logo}
+                loading="lazy"
               />
 
 

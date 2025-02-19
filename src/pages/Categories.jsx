@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext,  } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
@@ -21,10 +21,10 @@ const Categories = () => {
   const text = "lease select a category";
   const [displayedText, setDisplayedText] = useState("");
   const [index, setIndex] = useState(0);
-  const typingSpeed = 125; 
-  const pauseTime = 1500; 
+  const typingSpeed = 125;
+  const pauseTime = 1500;
   const { userName, password } = useContext(UserContext);
-  
+
 
   const styles = {
     fontSize: "16px",
@@ -44,7 +44,7 @@ const Categories = () => {
 
       return () => clearTimeout(timeout);
     } else {
-      
+
       const resetTimeout = setTimeout(() => {
         setDisplayedText("");
         setIndex(0);
@@ -64,41 +64,41 @@ const Categories = () => {
   }, []);
   useEffect(() => {
     const fetchNews = async () => {
-        setLoading(true); 
-        try {
-            let response;
-            if (selectedCategory === "Top Headlines Of Country") {
-                response = await getTopHeadline();
-            } else if (selectedCategory === "Top Headlines Of TechCrunch") {
-                response = await getTechCrunch();
-            } else if (selectedCategory === "Mentioning Apple") {
-                response = await getMentioningApple();
-            } else if (selectedCategory === "News About Tesla") {
-                response = await getTesla();
-            } else if (selectedCategory === "Wall Street News") {
-                response = await getWallStreet();
-            }
-
-            
-            setNewsData(response?.data?.articles || []); 
-        } catch (err) {
-            setError(err.message);
-        } finally {
-            setLoading(false);
-            setTimeout(() => setAnimate(true), 500);
-            if (selectedCategory) {
-              toast(`${selectedCategory} Categories Time!`, {
-                type: "success",
-                position: "bottom-right",
-                autoClose: 3000,
-                style: styles,
-              });
-            }
+      setLoading(true);
+      try {
+        let response;
+        if (selectedCategory === "Top Headlines Of Country") {
+          response = await getTopHeadline();
+        } else if (selectedCategory === "Top Headlines Of TechCrunch") {
+          response = await getTechCrunch();
+        } else if (selectedCategory === "Mentioning Apple") {
+          response = await getMentioningApple();
+        } else if (selectedCategory === "News About Tesla") {
+          response = await getTesla();
+        } else if (selectedCategory === "Wall Street News") {
+          response = await getWallStreet();
         }
+
+
+        setNewsData(response?.data?.articles || []);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+        setTimeout(() => setAnimate(true), 500);
+        if (selectedCategory) {
+          toast(`${selectedCategory} Categories Time!`, {
+            type: "success",
+            position: "bottom-right",
+            autoClose: 3000,
+            style: styles,
+          });
+        }
+      }
     };
 
     fetchNews();
-}, [selectedCategory]); 
+  }, [selectedCategory]);
   useEffect(() => {
     const toggleVisibility = () => {
       const scrollFromTop = window.scrollY;
@@ -113,12 +113,12 @@ const Categories = () => {
     window.addEventListener("scroll", toggleVisibility);
     return () => window.removeEventListener("scroll", toggleVisibility);
   }, []);
-
+ 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
-  const handleDtetail = (index,news) => {
-    return userName && password ?navigate(`/Detail/${index}`, { state: { news } }):navigate("/login")
+  const handleDtetail = (index, news) => {
+    return userName && password ? navigate(`/Detail/${index}`, { state: { news } }) : navigate("/login")
   };
 
   if (loading) return <div className="flex justify-center items-center h-screen"><HashLoader color="#1fcb7c" size={75} /></div>;
@@ -140,11 +140,12 @@ const Categories = () => {
         <option value="Wall Street News">Wall Street News</option>
       </select>
       {!selectedCategory ?
-      <div>
-        <h1 className="text-3xl text-center p-4 text-gray-600">P{displayedText}</h1>
-          <img src={logo} alt="" />
-      </div>
-      :
+        <div>
+          <h1 className="text-3xl text-center p-4 text-gray-600">P{displayedText}</h1>
+          <img src={logo} alt="NewMaster" loading="lazy"
+          />
+        </div>
+        :
         <div>
           <p className="mt-4 text-lg font-semibold">
             Selected Category: <span className="text-blue-600">{selectedCategory}</span>
@@ -154,13 +155,15 @@ const Categories = () => {
               <div
                 key={index}
                 className="flex flex-col items-center text-black bg-white border shadow-lg drop-shadow-2xl rounded-2xl p-5"
-                onClick={()=>{handleDtetail(index,news)}}
+                onClick={() => { handleDtetail(index, news) }}
               >
 
                 <img
                   className="size-72 object-cover rounded-md drop-shadow-xl"
                   alt="News"
                   src={news.urlToImage || logo}
+                  loading="lazy"
+
                 />
 
 

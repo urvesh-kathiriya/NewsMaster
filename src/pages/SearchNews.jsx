@@ -68,6 +68,7 @@ const SearchNews = ({ newsData }) => {
               className="size-72 object-cover rounded-md drop-shadow-xl"
               alt="News"
               src={news.urlToImage || logo}
+              loading="lazy"
               />
             <div className={`w-full h-[2px] bg-red-600 ${animate ? "line-animation" : ""} mt-4`}></div>
             <div className="flex flex-col items-center text-center mt-4">
@@ -83,7 +84,7 @@ const SearchNews = ({ newsData }) => {
         <div className=" flex flex-col justify-start items-center">
           
           <h1 className="text-3xl text-center p-4 text-gray-600">No Results Found.</h1>
-          <img src={logo} alt="" />
+          <img src={logo} alt="" loading="lazy"/>
           
         </div>
       )}
