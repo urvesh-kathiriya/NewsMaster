@@ -19,3 +19,6 @@
   width: 0; 
 }
 
+button{
+  cursor: pointer;
+}

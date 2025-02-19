@@ -1,4 +1,3 @@
-import "../App.css";
 import logo from "../assets/logo.png";
 import { useState, useEffect, useContext } from "react";
 import { useNavigate, useLocation, redirect } from "react-router-dom";
@@ -60,10 +59,10 @@ const Navbar = () => {
     };
 
     return (
-        <nav className="mt-2 bg-white p-3 dark:text-white dark:bg-gray-900">
+        <nav className="mt-2 bg-white p-3 dark:text-gray-200 dark:bg-gray-900">
 
             <div className="container mx-auto flex justify-between items-center px-4">
-                <button onClick={() => navigate("/")} style={{ cursor: "pointer" }}>
+                <button onClick={() => reDirect("/")} >
                     <img src={logo} alt="Logo" className="h-12 w-auto" loading="lazy"
  />
                 </button>
