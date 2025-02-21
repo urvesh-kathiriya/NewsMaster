@@ -3,6 +3,9 @@ const apis = import.meta.env.VITE_NEWS_API_KEY;
 const api = axios.create({
     baseURL: `https://newsapi.org/`,
 })
+const postApi = axios.create({
+    baseURL:`https://api.pujakaitem.com/api/`,
+})
 
 export const getTopHeadline = () => {
     return api.get(`v2/top-headlines?country=us&category=business&apiKey=${apis}`)
@@ -18,4 +21,11 @@ export const getTechCrunch = () => {
 }
 export const getWallStreet = () => {
     return api.get(`v2/everything?domains=wsj.com&apiKey=${apis}`)
+}
+
+
+// For Tantack Qurey 
+export const getPostsApiData = async()=>{
+    const post = await postApi.get("products")
+    return post.status === 200 ? post.data : []
 }

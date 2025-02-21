@@ -1,7 +1,9 @@
 import React,{useEffect} from 'react'
+import {  useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 
 const Contact = () => {
+  const navigate = useNavigate();
     const styles ={
       fontSize: "16px",
           fontWeight: "bold",
@@ -14,10 +16,13 @@ const Contact = () => {
       toast("Contact Us!", { type: "success", position: "bottom-right", autoClose: 3000 ,style:styles });
     },[])
   return (
-    <div>
-      <h1>
-      contact
+    <div className='flex flex-col justify-center items-center '>
+      <h1 className='text-3xl text-red-600 p-4'>
+      Fetch Api Using The  TanStack Query
       </h1>
+      <button onClick={()=>navigate("/tanstackqureyapi")} className='p-4 bg-amber-400'>
+      TanStackQureyApi
+      </button>
     <ToastContainer />
     </div>
   )
