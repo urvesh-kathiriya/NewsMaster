@@ -83,7 +83,7 @@ const Home = () => {
       </div>
         :
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-7" >
-          {newsData.map((news, index) => (
+          {newsData?.map((news, index) => (
             <div
               key={index}
               className="flex flex-col items-center text-black bg-white border shadow-lg drop-shadow-2xl rounded-2xl p-5"

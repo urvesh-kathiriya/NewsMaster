@@ -25,7 +25,7 @@ const Navbar = () => {
         borderRadius: "8px",
         width: "300px",
         boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
-      }
+    }
     const handlesearch = (e) => {
         setSearch(e.target.value);
     };
@@ -34,15 +34,15 @@ const Navbar = () => {
         setDarkMode((prevMode) => !prevMode);
     };
     const userAvtar = (name) => (name ? name.charAt(0).toUpperCase() : "?");
-   
+
     const reDirect = (path) => {
-        return userName && password && path ==="/login" ?
+        return userName && password && path === "/login" ?
             (
                 setSearch(""),
                 setUsername(""),
                 setPassword(""),
                 toast(`${userName} LogOut SucessFully`, { type: "info", position: "bottom-right", autoClose: 3000, style: styles })
-                
+
             )
             :
             (
@@ -59,18 +59,19 @@ const Navbar = () => {
     };
 
     return (
-        <nav className="mt-2 bg-white p-3 dark:text-gray-200 dark:bg-gray-900">
+        <nav className="mt-2 bg-white p-3 dark:text-gray-200 dark:bg-gray-900"
+        >
 
             <div className="container mx-auto flex justify-between items-center px-4">
                 <button onClick={() => reDirect("/")} >
                     <img src={logo} alt="Logo" className="h-12 w-auto" loading="lazy"
- />
+                    />
                 </button>
 
-                {userName && password && 
-                <div className="w-10 h-10 flex items-center justify-center rounded-full bg-blue-500 text-white font-bold text-lg" onClick={()=>{reDirect("/userDetail")}}>
-                    {userAvtar(userName)}
-                </div>
+                {userName && password &&
+                    <div className="w-10 h-10 flex items-center justify-center rounded-full bg-blue-500 text-white font-bold text-lg" onClick={() => { reDirect("/userDetail") }}>
+                        {userAvtar(userName)}
+                    </div>
 
                 }
 
@@ -90,7 +91,7 @@ const Navbar = () => {
                 </div>
 
 
-                <div className="flex gap-12">
+                <div className="flex gap-12 items-center">
                     <div className="hidden md:block ">
                         <input
                             type="text"
@@ -102,9 +103,11 @@ const Navbar = () => {
                         />
 
                     </div>
-                    <button onClick={toggleTheme} className="ml-4 text-xl text-gray-900 dark:text-gray-200">
-                        <FontAwesomeIcon icon={darkMode ? faSun : faMoon} className={darkMode ? "text-yellow-500" : "text-gray-500"} />
-                    </button>
+                    <div className="p-2 flex items-center w-5 h-5">
+                        <button onClick={toggleTheme} className=" text-xl text-gray-900 dark:text-gray-200">
+                            <FontAwesomeIcon icon={darkMode ? faSun : faMoon} className={darkMode ? "text-yellow-500" : "text-gray-500"} />
+                        </button>
+                    </div>
                     {!userName && !password &&
                         <button onClick={() => reDirect("/login")} className="flex items-center gap-2 px-4 py-2 rounded-lg  transition">
                             <LogIn size={20} />

@@ -8,20 +8,22 @@ const Footer = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const scrollToTop = () => {
-    if (location.pathname === "/") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    } else if (location.pathname === "/categories") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-    else if (location.pathname === "/contact") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    } else if (/^\/Detail\/\d+$/.test(location.pathname)) {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-    else {
+    // if (location.pathname === "/") {
+    //   window.scrollTo({ top: 0, behavior: "smooth" });
+    // } else if (location.pathname === "/categories") {
+    //   window.scrollTo({ top: 0, behavior: "smooth" });
+    // }
+    // else if (location.pathname === "/contact") {
+    //   window.scrollTo({ top: 0, behavior: "smooth" });
+    // } else if (/^\/Detail\/\d+$/.test(location.pathname)) {
+    //   window.scrollTo({ top: 0, behavior: "smooth" });
+    // }
+    // else {
 
-      navigate("/");
-    }
+    //   navigate("/");
+    // }
+    window.scrollTo({ top: 0, behavior: "smooth" });
+
 
   };
   const socialLinks = [

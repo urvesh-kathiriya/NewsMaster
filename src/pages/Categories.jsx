@@ -62,6 +62,7 @@ const Categories = () => {
       style: styles,
     });
   }, []);
+  
   useEffect(() => {
     const fetchNews = async () => {
       setLoading(true);
@@ -83,6 +84,7 @@ const Categories = () => {
         setNewsData(response?.data?.articles || []);
       } catch (err) {
         setError(err.message);
+        setTimeout(()=> navigate(0),1500)
       } finally {
         setLoading(false);
         setTimeout(() => setAnimate(true), 500);
@@ -122,7 +124,7 @@ const Categories = () => {
   };
 
   if (loading) return <div className="flex justify-center items-center h-screen"><HashLoader color="#1fcb7c" size={75} /></div>;
-  if (error) return <p className="text-center text-red-500">{error}</p>;
+  if (error) return <p className="text-center text-red-500">{`${selectedCategory} News Not Found! `}</p>;
 
 
   return (
@@ -151,7 +153,7 @@ const Categories = () => {
             Selected Category: <span className="text-blue-600">{selectedCategory}</span>
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-7" >
-            {newsData.map((news, index) => (
+            {newsData?.map((news, index) => (
               <div
                 key={index}
                 className="flex flex-col items-center text-black bg-white border shadow-lg drop-shadow-2xl rounded-2xl p-5"
