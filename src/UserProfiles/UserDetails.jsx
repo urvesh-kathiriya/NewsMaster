@@ -12,7 +12,7 @@ const UserDetails = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden mt-3 shadow-[#9A6CC9] shadow-2xl mb-10 ">
+    <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden mt-3 shadow-[#9A6CC9]  mb-10 ">
       <div className="relative bg-gray-300 h-64 flex items-center justify-around">
         <img src={cover} alt="" className="h-64 w-full" />
         <button className="absolute top-4 right-4 bg-yellow-500 text-white text-sm px-4 py-2 rounded">Enhance cover image</button>
