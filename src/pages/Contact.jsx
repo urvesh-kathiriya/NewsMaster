@@ -20,9 +20,15 @@ const Contact = () => {
       <h1 className='text-3xl text-red-600 p-4'>
       Fetch Api Using The  TanStack Query
       </h1>
+      <div className='p-4 flex gap-4'>
       <button onClick={()=>navigate("/tanstackqureyapi")} className='p-4 bg-amber-400'>
       TanStackQureyApi
       </button>
+
+      <button onClick={()=>navigate("/pagination")} className='p-4 bg-red-400'>
+      PaginationUsingAPI
+      </button>
+      </div>
     <ToastContainer />
     </div>
   )

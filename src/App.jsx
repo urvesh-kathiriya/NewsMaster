@@ -16,6 +16,7 @@ import { UserProvider } from './creactContext/UserInfoContext'
 import SingUp from './LoginSingUp/SingUp'
 import { QueryClient, QueryClientProvider, } from '@tanstack/react-query'
 import TanStackQureyApi from './FethUsingTanStckQurey/TanStackQureyApi'
+import Pagination from './pages/Pagination'
 // import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
                   <Route path="/singup" element={<SingUp />} />
                   <Route path="/userDetail" element={<UserDetails />} />
                   <Route path="/tanstackqureyapi" element={<TanStackQureyApi />}/>
+                  <Route path="/pagination" element={<Pagination />}/>
 
                 </Routes>
               </div>
