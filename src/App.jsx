@@ -23,7 +23,7 @@ function App() {
   const location = useLocation()
   const hideNavbarFooter = location.pathname === "/login"
   const padding = () => {
-    return hideNavbarFooter ? "" : "p-15"
+    return hideNavbarFooter ? "" : ""
   }
   const queryClient = new QueryClient();
   return (

@@ -77,12 +77,12 @@ const Home = () => {
   if (error) return <p className="text-center text-red-500">{error}</p>;
 
   return (
-    <div>
+    <div className="dark:bg-black">
       {search ? <div>
         <SearchNews newsData={newsData} />
       </div>
         :
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-7" >
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 p-7 " >
           {newsData?.map((news, index) => (
             <div
               key={index}

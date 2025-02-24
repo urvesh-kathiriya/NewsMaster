@@ -55,7 +55,7 @@ const SearchNews = ({ newsData }) => {
   }, [filteredNews]);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-7">
+    <div className="grid grid-cols-1 md:grid-cols-4 gap-3 p-5">
       {filteredNews.length > 0 ? (
         filteredNews?.map((news, index) => (
 

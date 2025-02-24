@@ -32,7 +32,7 @@ export const getPostsApiData = async()=>{
 
 
 export const pagination = async(pagenumber)=>{
-    const news = await api.get(`top-headlines?country=us&category=business&page=${pagenumber}&pageSize=3&apiKey=${apis}`)
+    const news = await api.get(`top-headlines?country=us&category=business&page=${pagenumber}&pageSize=4&apiKey=${apis}`)
     return news.status === 200 ? news.data : []
 
 }

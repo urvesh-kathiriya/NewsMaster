@@ -152,7 +152,7 @@ const Categories = () => {
           <p className="mt-4 text-lg font-semibold">
             Selected Category: <span className="text-blue-600">{selectedCategory}</span>
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-7" >
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 p-7" >
             {newsData?.map((news, index) => (
               <div
                 key={index}

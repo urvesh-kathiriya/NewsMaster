@@ -5,12 +5,16 @@ import { useNavigate } from 'react-router-dom'
 import loginimage from "../assets/loginimage.png"
 import { toast, ToastContainer } from 'react-toastify'
 import { UserContext } from '../creactContext/UserInfoContext'
+import { Eye, EyeOff } from "lucide-react";
+
 
 
 
 const Login = () => {
     const Navigate = useNavigate();
     const { userName, setUsername, password, setPassword } = useContext(UserContext)
+    const [showPassword, setShowPassword] = useState(false);
+
     const handleUsername = (e) => {
         setUsername(e);
     }
@@ -61,23 +65,33 @@ const Login = () => {
                             autoComplete="username"
                             onChange={(e) => { handleUsername(e.target.value) }}
                         />
-                        <input
-                            type="password"
-                            placeholder="Password"
-                            className="w-full p-2 mb-4 border rounded"
-                            autoComplete="current-password"
-                            onChange={(e) => { handlePassword(e.target.value) }}
-                        />
+                       
+                        <div className="relative">
+                            <input
+                                type={showPassword ? "text" : "password"}
+                                placeholder="Password"
+                                className="w-full p-2 mb-4 border rounded"
+                                autoComplete="current-password"
+                                onChange={(e) => { handlePassword(e.target.value) }}
+                            />
+                            <button
+                                type="button"
+                                className="absolute inset-y-0 right-3 flex items-center mb-4"
+                                onClick={() => setShowPassword(!showPassword)}
+                            >
+                                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                            </button>
+                        </div>
                         <button className="w-full text-black py-2 rounded transition">
                             Login in
                         </button>
-                       
+
                     </form>
 
                 </div>
-                    <button className="w-full text-black py-2 p-2 rounded transition" onClick={() => { Navigate("/singup") }}>
-                        Sing Up
-                    </button>
+                <button className="w-full text-black py-2 p-2 rounded transition" onClick={() => { Navigate("/singup") }}>
+                    Sing Up
+                </button>
             </div>
             <ToastContainer />
         </div>

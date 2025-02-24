@@ -30,7 +30,7 @@ function TanStackQureyApi() {
       <h1 className='flex justify-center items-center text-4xl text-yellow-600 pb-4'>
         TanStackQurey Api Fetching.....
       </h1>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-5">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 p-5">
 
         {data?.map((posts, index) => (
           <div

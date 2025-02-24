@@ -31,7 +31,16 @@ const Navbar = () => {
     };
 
     const toggleTheme = () => {
-        setDarkMode((prevMode) => !prevMode);
+        setDarkMode((prevMode) => {
+            const newMode = !prevMode; // Toggle dark mode state
+            if (newMode) {
+                document.documentElement.classList.add("dark"); // Apply dark mode
+            } else {
+                document.documentElement.classList.remove("dark"); // Remove dark mode
+            }
+            localStorage.setItem("darkMode", newMode); // Save theme preference
+            return newMode;
+        });
     };
     const userAvtar = (name) => (name ? name.charAt(0).toUpperCase() : "?");
 
@@ -50,8 +59,6 @@ const Navbar = () => {
                 setSearch("")
             )
     }
-
-
     const getButtonClasses = (path) => {
         return location.pathname === path
             ? "mx-4 py-1 text-blue-600 font-semibold"
@@ -59,7 +66,7 @@ const Navbar = () => {
     };
 
     return (
-        <nav className="mt-2 bg-white p-3 dark:text-gray-200 dark:bg-gray-900"
+        <nav className=" bg-white p-6 dark:text-gray-200  dark:bg-red-900 "
         >
 
             <div className="container mx-auto flex justify-between items-center px-4">
@@ -69,9 +76,12 @@ const Navbar = () => {
                 </button>
 
                 {userName && password &&
-                    <div className="w-10 h-10 flex items-center justify-center rounded-full bg-blue-500 text-white font-bold text-lg" onClick={() => { reDirect("/userDetail") }}>
-                        {userAvtar(userName)}
-                    </div>
+                    <button className="flex justify-center items-center gap-2 border-2  rounded-l-3xl bg-amber-300" onClick={() => { reDirect("/userDetail") }}>
+                        <div className="w-10 h-10 flex items-center justify-center rounded-full bg-red-400 text-gray-600 font-bold text-lg" >
+                            {userAvtar(userName)}
+                        </div>
+                        <p className="mr-2 ">{userName}</p>
+                    </button>
 
                 }
 
@@ -80,7 +90,7 @@ const Navbar = () => {
                 </button>
 
 
-                <div className="relative hidden md:flex space-x-8 shadow-lg rounded-full p-2 bg-white">
+                <div className="relative hidden md:flex space-x-8 shadow-lg rounded-full p-2 ">
                     <button onClick={() => reDirect("/")} className={getButtonClasses("/")}>Home</button>
                     <button onClick={() => reDirect("/categories")} className={getButtonClasses("/categories")}>
                         Categories
@@ -109,13 +119,13 @@ const Navbar = () => {
                         </button>
                     </div>
                     {!userName && !password &&
-                        <button onClick={() => reDirect("/login")} className="flex items-center gap-2 px-4 py-2 rounded-lg  transition">
+                        <button onClick={() => reDirect("/login")} className="flex items-center gap-2 px-4 py-2 rounded-lg text-black  transition">
                             <LogIn size={20} />
 
                         </button>
                     }
                     {userName && password &&
-                        <button onClick={() => reDirect("/login")} className="flex items-center gap-2 px-4 py-2 rounded-lg  transition">
+                        <button onClick={() => reDirect("/login")} className="flex items-center gap-2 px-4 py-2 rounded-lg  text-black transition">
                             <LogOut size={20} />
 
                         </button>
