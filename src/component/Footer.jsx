@@ -37,7 +37,7 @@ const Footer = () => {
     return i===0?"text-gray-400 hover:text-[#1DA1F2]":i===1?"text-gray-400 hover:text-[#1877F2]":i===2?"text-gray-400 hover:text-black":"text-gray-400 hover:text-[#FF0000]"
   }
   return (
-    <footer className="bg-[#101828] rounded-t-4xl flex min-h-screen" aria-labelledby="footer-heading">
+    <footer className=" bg-[#101828] rounded-t-4xl  shadow-lg " aria-labelledby="footer-heading">
       <h2 id="footer-heading" className="sr-only">Footer</h2>
       <div className="mx-auto max-w-7xl px-6 pb-8 pt-16 sm:pt-24 lg:px-8 lg:pt-32">
         <div className="xl:grid xl:grid-cols-4 xl:gap-8">

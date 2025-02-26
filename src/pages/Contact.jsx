@@ -21,7 +21,7 @@ const Contact = () => {
       Fetch Api Using The  TanStack Query
       </h1>
       <div className='p-4 flex gap-4'>
-      <button onClick={()=>navigate("/tanstackqureyapi")} className='p-4 bg-amber-400'>
+      <button onClick={()=>navigate("/tanstackqueryapi")} className='p-4 bg-amber-400'>
       TanStackQureyApi
       </button>
 

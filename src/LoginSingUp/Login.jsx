@@ -89,7 +89,7 @@ const Login = () => {
                     </form>
 
                 </div>
-                <button className="w-full text-black py-2 p-2 rounded transition" onClick={() => { Navigate("/singup") }}>
+                <button className="w-full text-black py-2 p-2 rounded transition" onClick={() => { Navigate("/siup") }}>
                     Sing Up
                 </button>
             </div>

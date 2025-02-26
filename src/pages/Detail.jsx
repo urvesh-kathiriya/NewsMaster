@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import logo from "../assets/logo.png";
 import moment from "moment";
 import { ToastContainer, toast } from 'react-toastify';
 import { useLocation, useNavigate } from "react-router-dom";
 import { AiOutlineHome } from "react-icons/ai";
+import { UserContext } from '../creactContext/UserInfoContext';
 
 const Detail = () => {
     const location = useLocation();
@@ -32,10 +33,13 @@ const Detail = () => {
         });
         
     }, []);
+    const a =()=>{
+       return navigate("/")
+    }
 
     return (
         <div className="container mx-auto p-6">
-
+            
             <button
                 className="mb-4 bg-gray-500 px-3 py-2 text-white w-12 h-12 !rounded-full flex items-center justify-center box-shadow-gray-950"
                 onClick={() => navigate("/")}
