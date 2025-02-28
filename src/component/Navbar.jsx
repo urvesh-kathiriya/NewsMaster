@@ -1,5 +1,5 @@
 import logo from "../assets/logo.png";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
 import { useNavigate, useLocation, redirect } from "react-router-dom";
 import { LogIn, LogOut, Menu, X } from "lucide-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,6 +8,8 @@ import { SearchContext } from "../creactContext/SearchContext";
 import { ThemeContext } from "../creactContext/DarkLightContext";
 import { UserContext } from "../creactContext/UserInfoContext";
 import { ToastContainer, toast } from 'react-toastify';
+import { useQuery } from "@tanstack/react-query";
+import { getTopHeadlinUsingTanStackQuery } from "../services/GetService";
 
 
 
@@ -16,8 +18,10 @@ const Navbar = () => {
     const location = useLocation();
     const [menuOpen, setMenuOpen] = useState(false);
     const { search, setSearch } = useContext(SearchContext);
+    const [suggestions, setSuggestions] = useState([]);
     const { userName, setUsername, password, setPassword } = useContext(UserContext);
     const { darkMode, setDarkMode } = useContext(ThemeContext);
+
     const styles = {
         fontSize: "16px",
         fontWeight: "bold",
@@ -26,8 +30,29 @@ const Navbar = () => {
         width: "300px",
         boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
     }
+
+    const { data } = useQuery({
+        queryKey: ["news"],
+        queryFn: () => getTopHeadlinUsingTanStackQuery(),
+    })
+
+
+    const companyNames = [...new Set(data?.map((item) => item.source.name))];
+
     const handlesearch = (e) => {
-        setSearch(e.target.value);
+        const value = e.target.value;
+        setSearch(value);
+        if (value.length === 0) {
+            setSuggestions(companyNames);
+        }
+
+        if (value.length > 0) {
+            const filteredSuggestions = companyNames.filter((name) =>
+                name.toLowerCase().includes(value.toLowerCase())
+            );
+            setSuggestions(filteredSuggestions);
+        }
+
     };
 
     const toggleTheme = () => {
@@ -64,6 +89,7 @@ const Navbar = () => {
             ? "mx-4 py-1 text-blue-600 font-semibold"
             : "mx-4 py-1 text-black hover:text-blue-600";
     };
+
 
     return (
         <nav className=" bg-white p-6 dark:text-gray-200  dark:bg-red-900 "
@@ -102,16 +128,32 @@ const Navbar = () => {
 
 
                 <div className="flex gap-12 items-center">
-                    <div className="hidden md:block ">
+                    <div className="hidden md:block relative ">
                         <input
                             type="text"
                             value={search}
-                            placeholder="Search..."
-                            className="px-4 py-1  rounded-lg border border-gray-300 text-black focus:outline-none focus:ring focus:ring-blue-200"
                             onChange={handlesearch}
-
+                            onBlur={() => setTimeout(() => setSuggestions([]), 200)}
+                            onFocus={() => setSuggestions(companyNames)}
+                            placeholder="Search by News..."
+                            className="px-4 py-1  rounded-lg border border-gray-300 text-black focus:outline-none focus:ring focus:ring-blue-200"
                         />
+                        {suggestions.length > 0 && (
+                            <ul className="w-96 absolute left-0 top-full z-50 bg-gray-800 text-cyan-200 border  grid grid-cols-3 gap-2 shadow-lg p-2">
+                                <p  className=" col-span-3 flex justify-center items-center gap-2 border rounded-2xl p-2 hover:bg-gray-200 hover:text-amber-800 ">Company Name ... </p>
 
+                                {suggestions.map((name, index) => (
+                                    <li
+                                        key={index}
+                                        className="p-2 hover:bg-gray-200 hover:text-amber-800 shadow-2xl cursor-pointer border rounded"
+                                        onMouseDown={() => setSearch(name)}
+                                    >
+                                        {name}
+                                    </li>
+                                ))}
+
+                            </ul>
+                        )}
                     </div>
                     <div className="p-2 flex items-center w-5 h-5">
                         <button onClick={toggleTheme} className=" text-xl text-gray-900 dark:text-gray-200">

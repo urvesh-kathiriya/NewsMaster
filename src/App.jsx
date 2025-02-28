@@ -19,6 +19,7 @@ import TanStackQueryApi from './FethUsingTanStckQuery/TanStackQueryApi'
 import Pagination from './pages/Pagination'
 import ProtectedCategories from './ProtectedRoute/ProtectedCategories'
 import Page404 from "./PageNotFound/Page404"
+import SearchNews from './pages/SearchNews'
 // import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
                 <Route element={<ProtectedCategories />}>
                   <Route path="/categories" element={<Categories />} />
                   <Route path="/contact" element={<Contact />} />
+                  <Route path="/SearchNews" element={<SearchNews />} />
                 <Route path="/Detail/:id" element={<Detail />} />
                 <Route path="/postDetail/:id" element={<DetailPost />} />
                 </Route>

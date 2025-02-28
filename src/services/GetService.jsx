@@ -29,6 +29,10 @@ export const getPostsApiData = async()=>{
     const post = await postApi.get("products")
     return post.status === 200 ? post.data : []
 }
+export const getTopHeadlinUsingTanStackQuery = async() => {
+    const newss = await api.get(`top-headlines?country=us&category=business&apiKey=${apis}`)
+    return newss.status === 200 ? newss.data.articles : []
+}
 
 
 export const pagination = async(pagenumber)=>{

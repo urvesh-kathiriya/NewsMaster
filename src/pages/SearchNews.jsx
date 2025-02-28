@@ -11,7 +11,7 @@ const SearchNews = ({ newsData }) => {
   const { search } = useContext(SearchContext);
   const navigate = useNavigate();
   const [animate, setAnimate] = useState(false);
-  const [notice,setNotice] = useState(false);
+
 
   useEffect(() => {
     setTimeout(() => setAnimate(true), 500);
@@ -81,7 +81,7 @@ const SearchNews = ({ newsData }) => {
       
         ))
       ) : (
-        <div className=" flex flex-col justify-start items-center">
+        <div className="flex flex-col justify-start items-center">
           
           <h1 className="text-3xl text-center p-4 text-gray-600">No Results Found.</h1>
           <img src={logo} alt="" loading="lazy"/>
